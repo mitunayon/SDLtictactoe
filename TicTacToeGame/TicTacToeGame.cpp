@@ -12,46 +12,35 @@ int main(int argc, char* args[])
 {
 	GameSetup setupController;
 
-	//Start up SDL and create window
-	if (!setupController.init())
+	if (!setupController.init() && !setupController.loadMedia())
 	{
-		printf("Failed to initialize!\n");
+		return 1;
 	}
-	else
+
+	//Main loop flag
+	bool quit = false;
+
+	//Event handler
+	SDL_Event e;
+
+	//While application is running
+	while (!quit)
 	{
-		//Load media
-		if (!setupController.loadMedia())
+		//Handle events on queue
+		while (SDL_PollEvent(&e) != 0)
 		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			//While application is running
-			while (!quit)
+			//User requests quit
+			if (e.type == SDL_QUIT)
 			{
-				//Handle events on queue
-				while (SDL_PollEvent(&e) != 0)
-				{
-					//User requests quit
-					if (e.type == SDL_QUIT)
-					{
-						quit = true;
-					}
-				}
-
-				//Apply the PNG image
-				SDL_BlitSurface(setupController.gPNGSurface, NULL, setupController.gScreenSurface, NULL);
-
-				//Update the surface
-				SDL_UpdateWindowSurface(setupController.gWindow);
+				quit = true;
 			}
 		}
+
+		//Apply the PNG image
+		SDL_BlitSurface(setupController.gPNGSurface, NULL, setupController.gScreenSurface, NULL);
+
+		//Update the surface
+		SDL_UpdateWindowSurface(setupController.gWindow);
 	}
 
 	//Free resources and close SDL
