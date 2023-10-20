@@ -1,6 +1,7 @@
 #include <iostream> // for using std::cout
 #include <stdio.h> // instead of std::cout we are using printf()
 #include <SDL.h>
+#include <SDL_image.h>
 
 //Screen dimensions
 const int SCREEN_WIDTH = 640;
