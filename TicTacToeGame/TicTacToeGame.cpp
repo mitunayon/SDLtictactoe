@@ -1,4 +1,4 @@
-#include "GameSetup.h";
+#include "GameSetup.h"
 
 int main(int argc, char* args[])
 {
@@ -33,11 +33,14 @@ int main(int argc, char* args[])
 			}
 		}
 
-		//Apply the PNG image
-		SDL_BlitSurface(setupController.gPNGSurface, NULL, setupController.gScreenSurface, NULL);
+		//Clear screen
+		SDL_RenderClear(setupController.gRenderer);
+
+		//Render texture to screen
+		SDL_RenderCopy(setupController.gRenderer, setupController.gTexture, NULL, NULL);
 
 		//Update the surface
-		SDL_UpdateWindowSurface(setupController.gWindow);
+		SDL_RenderPresent(setupController.gRenderer);
 	}
 
 	//Free resources and close SDL
