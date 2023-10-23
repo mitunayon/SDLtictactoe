@@ -135,35 +135,3 @@ SDL_Texture* GameSetup::loadTexture(std::string path)
 	SDL_Texture* newTexture = IMG_LoadTexture(gRenderer, path.c_str());
 	return newTexture;
 }
-
-bool GameSetup::SetCurrentTexture(SDL_Texture* texture)
-{
-
-	return true;
-}
-
-void GameSetup::ProcessInput(SDL_Keycode key)
-{
-	switch (key)
-	{
-	case SDLK_UP:
-		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_UP];
-		break;
-
-	case SDLK_DOWN:
-		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_DOWN];
-		break;
-
-	case SDLK_LEFT:
-		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_LEFT];
-		break;
-
-	case SDLK_RIGHT:
-		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
-		break;
-
-	default:
-		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
-		break;
-	}
-}

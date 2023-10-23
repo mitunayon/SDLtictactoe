@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL.h>
 
 //Key press surfaces constants
 enum KeyPressSurfaces
@@ -15,6 +16,11 @@ enum KeyPressSurfaces
 class InputProcessor
 {
 public:
-	KeyPressSurfaces CurrentInput;
+	SDL_Keycode CurrentInput;
+	void SetCurrentInput(SDL_Keycode keycode);
+	bool IsInputQueued();
+	SDL_Event InputEvent;
+	bool IsQuitPressed();
+	bool IsInputTypeKeyDown();
 };
 

@@ -1,10 +1,12 @@
 #include "GameSetup.h"
 #include "InputProcessor.h"
+#include "ImageRenderer.h"
 
 int main(int argc, char* args[])
 {
 	GameSetup* setupController = new GameSetup();
 	InputProcessor inputProcessor = InputProcessor();
+	ImageRenderer imageRenderer = ImageRenderer();
 
 	if (!setupController->init())
 	{
@@ -19,36 +21,59 @@ int main(int argc, char* args[])
 	//Main loop flag
 	bool quit = false;
 
-	//Event handler
-	SDL_Event e;
-
 	//While application is running
 	while (!quit)
 	{
-		//Handle events on queue
-		while (SDL_PollEvent(&e) != 0)
+		while (inputProcessor.IsInputQueued())
 		{
-			//User requests quit
-			if (e.type == SDL_QUIT)
+			if (inputProcessor.InputEvent.type == SDL_QUIT)
 			{
 				quit = true;
+				break;
 			}
-			else if (e.type == SDL_KEYDOWN)
+
+			if (inputProcessor.InputEvent.type == SDL_KEYDOWN)
 			{
-				SDL_Keycode key = e.key.keysym.sym;
-				setupController->ProcessInput(key);
+				// what is this?
+				SDL_Keycode key = inputProcessor.InputEvent.key.keysym.sym;
+				inputProcessor.SetCurrentInput(key);
+				//setupController->ProcessInput(key);
 			}
+
+			// Image Renderer loop
+			// Set image
+			switch (inputProcessor.CurrentInput)
+			{
+			case SDLK_UP:
+				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_UP];
+				break;
+
+			case SDLK_DOWN:
+				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_DOWN];
+				break;
+
+			case SDLK_LEFT:
+				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_LEFT];
+				break;
+
+			case SDLK_RIGHT:
+				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
+				break;
+
+			default:
+				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
+				break;
+			}
+
+			//Clear screen
+			SDL_RenderClear(setupController->gRenderer);
+
+			//Render texture to screen
+			SDL_RenderCopy(setupController->gRenderer, setupController->gCurrentTexture, NULL, NULL);
+
+			//Update the surface
+			SDL_RenderPresent(setupController->gRenderer);
 		}
-
-		//Clear screen
-		SDL_RenderClear(setupController->gRenderer);
-
-
-		//Render texture to screen
-		SDL_RenderCopy(setupController->gRenderer, setupController->gCurrentTexture, NULL, NULL);
-
-		//Update the surface
-		SDL_RenderPresent(setupController->gRenderer);
 	}
 
 	//Free resources and close SDL

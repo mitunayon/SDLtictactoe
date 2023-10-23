@@ -131,10 +131,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameSetup.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="TicTacToeGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameSetup.h" />
+    <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="InputProcessor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
