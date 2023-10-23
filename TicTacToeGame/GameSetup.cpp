@@ -55,21 +55,68 @@ bool GameSetup::loadMedia()
 	bool success = true;
 
 	//Load PNG surface
-	gTexture = loadTexture("Assets/ttt-assets.png");
-	if (gTexture == NULL)
+	gCurrentTexture = loadTexture("Assets/ttt-assets.png");
+	if (gCurrentTexture == NULL)
 	{
 		printf("Failed to load texture image!\n");
 		success = false;
 	}
+
+	//Load default surface
+	gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT] = loadTexture("Assets/press.bmp");
+	if (gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT] == NULL)
+	{
+		printf("Failed to load default image!\n");
+		success = false;
+	}
+
+	//Load up surface
+	gKeyPressTextures[KEY_PRESS_SURFACE_UP] = loadTexture("Assets/up.bmp");
+	if (gKeyPressTextures[KEY_PRESS_SURFACE_UP] == NULL)
+	{
+		printf("Failed to load up image!\n");
+		success = false;
+	}
+
+	//Load down surface
+	gKeyPressTextures[KEY_PRESS_SURFACE_DOWN] = loadTexture("Assets/down.bmp");
+	if (gKeyPressTextures[KEY_PRESS_SURFACE_DOWN] == NULL)
+	{
+		printf("Failed to load down image!\n");
+		success = false;
+	}
+
+	//Load left surface
+	gKeyPressTextures[KEY_PRESS_SURFACE_LEFT] = loadTexture("Assets/left.bmp");
+	if (gKeyPressTextures[KEY_PRESS_SURFACE_LEFT] == NULL)
+	{
+		printf("Failed to load left image!\n");
+		success = false;
+	}
+
+	//Load right surface
+	gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT] = loadTexture("Assets/right.bmp");
+	if (gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT] == NULL)
+	{
+		printf("Failed to load right image!\n");
+		success = false;
+	}
+
 
 	return success;
 }
 
 void GameSetup::close()
 {
-	//Free loaded image#
-	SDL_DestroyTexture(gTexture);
-	gTexture = NULL;
+	//Free loaded image
+	SDL_DestroyTexture(gCurrentTexture);
+	gCurrentTexture = NULL;
+
+	//Destroy loaded input textures
+	for (int i = 0; i < KEY_PRESS_SURFACE_TOTAL; i++)
+	{
+		SDL_DestroyTexture(gKeyPressTextures[i]);
+	}
 
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
@@ -87,4 +134,36 @@ SDL_Texture* GameSetup::loadTexture(std::string path)
 	//The final texture
 	SDL_Texture* newTexture = IMG_LoadTexture(gRenderer, path.c_str());
 	return newTexture;
+}
+
+bool GameSetup::SetCurrentTexture(SDL_Texture* texture)
+{
+
+	return true;
+}
+
+void GameSetup::ProcessInput(SDL_Keycode key)
+{
+	switch (key)
+	{
+	case SDLK_UP:
+		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_UP];
+		break;
+
+	case SDLK_DOWN:
+		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_DOWN];
+		break;
+
+	case SDLK_LEFT:
+		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_LEFT];
+		break;
+
+	case SDLK_RIGHT:
+		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
+		break;
+
+	default:
+		gCurrentTexture = gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
+		break;
+	}
 }

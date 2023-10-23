@@ -1,15 +1,17 @@
 #include "GameSetup.h"
+#include "InputProcessor.h"
 
 int main(int argc, char* args[])
 {
-	GameSetup setupController;
+	GameSetup* setupController = new GameSetup();
+	InputProcessor inputProcessor = InputProcessor();
 
-	if (!setupController.init())
+	if (!setupController->init())
 	{
 		return 1;
 	}
 
-	if (!setupController.loadMedia())
+	if (!setupController->loadMedia())
 	{
 		return 1;
 	}
@@ -31,20 +33,26 @@ int main(int argc, char* args[])
 			{
 				quit = true;
 			}
+			else if (e.type == SDL_KEYDOWN)
+			{
+				SDL_Keycode key = e.key.keysym.sym;
+				setupController->ProcessInput(key);
+			}
 		}
 
 		//Clear screen
-		SDL_RenderClear(setupController.gRenderer);
+		SDL_RenderClear(setupController->gRenderer);
+
 
 		//Render texture to screen
-		SDL_RenderCopy(setupController.gRenderer, setupController.gTexture, NULL, NULL);
+		SDL_RenderCopy(setupController->gRenderer, setupController->gCurrentTexture, NULL, NULL);
 
 		//Update the surface
-		SDL_RenderPresent(setupController.gRenderer);
+		SDL_RenderPresent(setupController->gRenderer);
 	}
 
 	//Free resources and close SDL
-	setupController.close();
+	setupController->close();
 
 	return 0;
 }
