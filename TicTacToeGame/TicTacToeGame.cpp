@@ -6,14 +6,19 @@ int main(int argc, char* args[])
 {
 	GameSetup* setupController = new GameSetup();
 	InputProcessor inputProcessor = InputProcessor();
-	ImageRenderer imageRenderer = ImageRenderer();
+	ImageRenderer* imageRenderer = new ImageRenderer();
 
 	if (!setupController->init())
 	{
 		return 1;
 	}
 
-	if (!setupController->loadMedia())
+	if (!setupController->loadMedia(imageRenderer))
+	{
+		return 1;
+	}
+
+	if (!imageRenderer->Init())
 	{
 		return 1;
 	}
@@ -45,35 +50,37 @@ int main(int argc, char* args[])
 			switch (inputProcessor.CurrentInput)
 			{
 			case SDLK_UP:
-				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_UP];
+				imageRenderer->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_UP];
 				break;
 
 			case SDLK_DOWN:
-				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_DOWN];
+				imageRenderer->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_DOWN];
 				break;
 
 			case SDLK_LEFT:
-				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_LEFT];
+				imageRenderer->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_LEFT];
 				break;
 
 			case SDLK_RIGHT:
-				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
+				imageRenderer->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
 				break;
 
 			default:
-				setupController->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
+				imageRenderer->gCurrentTexture = setupController->gKeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
 				break;
 			}
-
-			//Clear screen
-			SDL_RenderClear(setupController->gRenderer);
-
-			//Render texture to screen
-			SDL_RenderCopy(setupController->gRenderer, setupController->gCurrentTexture, NULL, NULL);
-
-			//Update the surface
-			SDL_RenderPresent(setupController->gRenderer);
 		}
+
+
+		//Clear screen
+		SDL_RenderClear(imageRenderer->gRenderer);
+
+		//Render texture to screen
+		SDL_RenderCopy(imageRenderer->gRenderer, imageRenderer->gCurrentTexture, NULL, NULL);
+
+		//Update the surface
+		SDL_RenderPresent(imageRenderer->gRenderer);
+
 	}
 
 	//Free resources and close SDL
