@@ -1,7 +1,17 @@
 #include "ImageRenderer.h"
 #include <stdio.h>
 
-bool ImageRenderer::Init()
+ImageRenderer::ImageRenderer()
+{
+	ImageRenderer::init();
+}
+
+ImageRenderer::~ImageRenderer()
+{
+	ImageRenderer::close();
+}
+
+bool ImageRenderer::init()
 {
 	// Create window
 	gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
@@ -34,12 +44,21 @@ bool ImageRenderer::Init()
 		{
 			gScreenSurface = SDL_GetWindowSurface(gWindow);
 		}
+
+		// Load key press images
+		return LoadKeyPressImages();
 	}
     return false;
 }
 
-bool ImageRenderer::Close()
+bool ImageRenderer::close()
 {
+	//Destroy loaded input textures
+	for (int i = 0; i < KEY_PRESS_SURFACE_TOTAL; i++)
+	{
+		SDL_DestroyTexture(KeyPressTextures[i]);
+	}
+
 	//Free loaded image
 	SDL_DestroyTexture(gCurrentTexture);
 	gCurrentTexture = NULL;
@@ -56,9 +75,8 @@ bool ImageRenderer::Close()
 	return false;
 }
 
-SDL_Texture* ImageRenderer::loadTexture(std::string path)
+SDL_Texture* ImageRenderer::LoadTexture(std::string path)
 {
-	your error is here. the gRenderer has not been created
 	//The final texture
 	if (gRenderer == nullptr)
 	{
@@ -68,4 +86,50 @@ SDL_Texture* ImageRenderer::loadTexture(std::string path)
 
 	SDL_Texture* newTexture = IMG_LoadTexture(gRenderer, path.c_str());
 	return newTexture;
+}
+
+bool ImageRenderer::LoadKeyPressImages()
+{
+	bool success = true;
+
+	//Load default surface
+	KeyPressTextures[KEY_PRESS_SURFACE_DEFAULT] = LoadTexture("Assets/press.bmp");
+	if (KeyPressTextures[KEY_PRESS_SURFACE_DEFAULT] == NULL)
+	{
+		printf("Failed to load default image!\n");
+		success = false;
+	}
+
+	//Load up surface
+	KeyPressTextures[KEY_PRESS_SURFACE_UP] = LoadTexture("Assets/up.bmp");
+	if (KeyPressTextures[KEY_PRESS_SURFACE_UP] == NULL)
+	{
+		printf("Failed to load up image!\n");
+		success = false;
+	}
+
+	//Load down surface
+	KeyPressTextures[KEY_PRESS_SURFACE_DOWN] = LoadTexture("Assets/down.bmp");
+	if (KeyPressTextures[KEY_PRESS_SURFACE_DOWN] == NULL)
+	{
+		printf("Failed to load down image!\n");
+		success = false;
+	}
+
+	//Load left surface
+	KeyPressTextures[KEY_PRESS_SURFACE_LEFT] = LoadTexture("Assets/left.bmp");
+	if (KeyPressTextures[KEY_PRESS_SURFACE_LEFT] == NULL)
+	{
+		printf("Failed to load left image!\n");
+		success = false;
+	}
+
+	//Load right surface
+	KeyPressTextures[KEY_PRESS_SURFACE_RIGHT] = LoadTexture("Assets/right.bmp");
+	if (KeyPressTextures[KEY_PRESS_SURFACE_RIGHT] == NULL)
+	{
+		printf("Failed to load right image!\n");
+		success = false;
+	}
+	return success;
 }

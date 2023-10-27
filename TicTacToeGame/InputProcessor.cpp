@@ -1,5 +1,10 @@
 #include "InputProcessor.h"
 
+InputProcessor::~InputProcessor()
+{
+
+}
+
 void InputProcessor::SetCurrentInput(SDL_Keycode keycode)
 {
 	CurrentInput = keycode;
