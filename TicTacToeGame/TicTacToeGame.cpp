@@ -5,7 +5,7 @@
 int main(int argc, char* args[])
 {
 	GameSetup* gSetupController = new GameSetup();
-	InputProcessor gInputProcessor = InputProcessor();
+	InputProcessor* gInputProcessor = new InputProcessor();
 	ImageRenderer* gImageRenderer = new ImageRenderer();
 
 	if (!gSetupController->init())
@@ -19,25 +19,25 @@ int main(int argc, char* args[])
 	//While application is running
 	while (!gQuit)
 	{
-		while (gInputProcessor.IsInputQueued())
+		while (gInputProcessor->IsInputQueued())
 		{
-			if (gInputProcessor.InputEvent.type == SDL_QUIT)
+			if (gInputProcessor->InputEvent.type == SDL_QUIT)
 			{
 				gQuit = true;
 				break;
 			}
 
-			if (gInputProcessor.InputEvent.type == SDL_KEYDOWN)
+			if (gInputProcessor->InputEvent.type == SDL_KEYDOWN)
 			{
 				// what is this?
-				SDL_Keycode key = gInputProcessor.InputEvent.key.keysym.sym;
-				gInputProcessor.SetCurrentInput(key);
+				SDL_Keycode key = gInputProcessor->InputEvent.key.keysym.sym;
+				gInputProcessor->SetCurrentInput(key);
 				//setupController->ProcessInput(key);
 			}
 
 			// Image Renderer loop
 			// Set image
-			switch (gInputProcessor.CurrentInput)
+			switch (gInputProcessor->CurrentInput)
 			{
 			case SDLK_UP:
 				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_UP];
@@ -73,8 +73,9 @@ int main(int argc, char* args[])
 
 	}
 
-	//Free resources and close SDL
-	gSetupController->close();
+	delete gSetupController;
+	delete gInputProcessor;
+	delete gImageRenderer;
 
 	return 0;
 }

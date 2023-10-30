@@ -2,6 +2,11 @@
 #include <SDL.h>
 #include <stdio.h>
 
+GameSetup::~GameSetup()
+{
+	close();
+}
+
 bool GameSetup::init()
 {
 	bool success = true;
