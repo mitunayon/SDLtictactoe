@@ -4,8 +4,8 @@
 class GameObjectRegistry : public IGameSystem
 {
 public:
-	virtual void PreUpdate();
-	virtual void Update();
-	virtual void PostUpdate();
+	virtual void PreUpdate() override;
+	virtual void Update() override;
+	virtual void PostUpdate() override;
 };
 

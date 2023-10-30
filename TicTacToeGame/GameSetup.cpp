@@ -31,4 +31,16 @@ void GameSetup::close()
 	SDL_Quit();
 }
 
+void GameSetup::Update()
+{
+}
+
+void GameSetup::PreUpdate()
+{
+}
+
+void GameSetup::PostUpdate()
+{
+}
+
 
