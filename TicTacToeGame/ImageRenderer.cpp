@@ -11,18 +11,7 @@ ImageRenderer::~ImageRenderer()
 	ImageRenderer::close();
 }
 
-void ImageRenderer::Update()
-{
-	//Clear screen
-	SDL_RenderClear(m_renderer);
-
-	//Render texture to screen
-	SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
-
-	//Update the surface
-	SDL_RenderPresent(m_renderer);
-}
-
+// Private
 bool ImageRenderer::init()
 {
 	// Create window
@@ -85,6 +74,19 @@ bool ImageRenderer::close()
 	IMG_Quit();
 
 	return false;
+}
+
+// Public
+void ImageRenderer::Update()
+{
+	//Clear screen
+	SDL_RenderClear(m_renderer);
+
+	//Render texture to screen
+	SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
+
+	//Update the surface
+	SDL_RenderPresent(m_renderer);
 }
 
 SDL_Texture* ImageRenderer::LoadTexture(std::string path)
