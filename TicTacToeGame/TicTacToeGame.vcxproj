@@ -133,13 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameObjectRegistry.cpp" />
     <ClCompile Include="GameSetup.cpp" />
+    <ClCompile Include="IGameSystem.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="TicTacToeGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameObjectRegistry.h" />
     <ClInclude Include="GameSetup.h" />
+    <ClInclude Include="IGameSystem.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="InputProcessor.h" />
   </ItemGroup>
