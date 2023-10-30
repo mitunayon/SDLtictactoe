@@ -19,49 +19,10 @@ int main(int argc, char* args[])
 	//While application is running
 	while (!gQuit)
 	{
-		while (gInputProcessor->IsInputQueued())
-		{
-			if (gInputProcessor->InputEvent.type == SDL_QUIT)
-			{
-				gQuit = true;
-				break;
-			}
+		gInputProcessor->Update();
+		gQuit = gInputProcessor->IsQuitPressed();
 
-			if (gInputProcessor->InputEvent.type == SDL_KEYDOWN)
-			{
-				// what is this?
-				SDL_Keycode key = gInputProcessor->InputEvent.key.keysym.sym;
-				gInputProcessor->SetCurrentInput(key);
-				//setupController->ProcessInput(key);
-			}
-
-			// Image Renderer loop
-			// Set image
-			switch (gInputProcessor->CurrentInput)
-			{
-			case SDLK_UP:
-				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_UP];
-				break;
-
-			case SDLK_DOWN:
-				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DOWN];
-				break;
-
-			case SDLK_LEFT:
-				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_LEFT];
-				break;
-
-			case SDLK_RIGHT:
-				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
-				break;
-
-			default:
-				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
-				break;
-			}
-		}
-
-
+		//gImageRenderer->Update();
 		//Clear screen
 		SDL_RenderClear(gImageRenderer->Renderer);
 
