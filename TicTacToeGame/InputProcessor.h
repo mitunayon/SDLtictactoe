@@ -19,7 +19,7 @@ public:
 	void Update();
 	SDL_Keycode CurrentInput;
 	void SetCurrentInput(SDL_Keycode keycode);
-	bool IsInputQueued();
+	bool GetInputPoll();
 	bool IsQuitPressed();
 };
 

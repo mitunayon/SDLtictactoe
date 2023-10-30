@@ -19,7 +19,7 @@ void InputProcessor::Update()
 	m_quitGame = false;
 
 	// Update
-	while (IsInputQueued())
+	while (GetInputPoll())
 	{
 		if (m_inputEvent.type == SDL_QUIT)
 		{
@@ -86,7 +86,7 @@ void InputProcessor::SetCurrentInput(SDL_Keycode keycode)
 	}
 }
 
-bool InputProcessor::IsInputQueued()
+bool InputProcessor::GetInputPoll()
 {
 	return SDL_PollEvent(&m_inputEvent) != 0;
 }
