@@ -60,6 +60,14 @@ void InputProcessor::Update()
 	}
 }
 
+void InputProcessor::PreUpdate()
+{
+}
+
+void InputProcessor::PostUpdate()
+{
+}
+
 void InputProcessor::SetCurrentInput(SDL_Keycode keycode)
 {
 	CurrentInput = keycode;
@@ -95,3 +103,4 @@ bool InputProcessor::IsQuitPressed()
 {
 	return m_quitGame;
 }
+

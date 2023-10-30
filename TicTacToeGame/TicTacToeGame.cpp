@@ -21,14 +21,19 @@ int main(int argc, char* args[])
 	//While application is running
 	while (!gQuit)
 	{
+		gInputProcessor->PreUpdate();
 		gInputProcessor->Update();
-		gQuit = gInputProcessor->IsQuitPressed();
+		gInputProcessor->PostUpdate();
 
 		gGameObjectRegistry->PreUpdate();
 		gGameObjectRegistry->Update();
 		gGameObjectRegistry->PostUpdate();
 
+		gImageRenderer->PreUpdate();
 		gImageRenderer->Update();
+		gImageRenderer->PostUpdate();
+		
+		gQuit = gInputProcessor->IsQuitPressed();
 	}
 
 	delete gSetupController;

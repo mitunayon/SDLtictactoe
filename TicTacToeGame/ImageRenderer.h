@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
+#include "IGameSystem.h"
 
 //Key press surfaces constants
 enum KeyPressSurfaces
@@ -14,7 +15,7 @@ enum KeyPressSurfaces
 	KEY_PRESS_SURFACE_TOTAL
 };
 
-class ImageRenderer
+class ImageRenderer : public IGameSystem
 {
 private:
 	bool init();
@@ -37,7 +38,10 @@ public:
 	ImageRenderer();
 	~ImageRenderer();
 
-	void Update();
+	// Inherited via IGameSystem
+	virtual void PreUpdate() override;
+	virtual void Update() override;
+	virtual void PostUpdate() override;
 
 	//Screen dimension constants
 	const int SCREEN_WIDTH = 640;

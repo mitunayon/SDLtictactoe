@@ -89,6 +89,14 @@ void ImageRenderer::Update()
 	SDL_RenderPresent(m_renderer);
 }
 
+void ImageRenderer::PreUpdate()
+{
+}
+
+void ImageRenderer::PostUpdate()
+{
+}
+
 SDL_Texture* ImageRenderer::LoadTexture(std::string path)
 {
 	//The final texture
@@ -147,3 +155,4 @@ bool ImageRenderer::LoadKeyPressImages()
 	}
 	return success;
 }
+

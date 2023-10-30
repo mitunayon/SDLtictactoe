@@ -1,7 +1,8 @@
 #pragma once
 #include <SDL.h>
+#include "IGameSystem.h"
 
-class InputProcessor
+class InputProcessor : public IGameSystem
 {
 
 private:
@@ -16,10 +17,14 @@ public:
 	InputProcessor();
 	~InputProcessor();
 
-	void Update();
 	SDL_Keycode CurrentInput;
 	void SetCurrentInput(SDL_Keycode keycode);
 	bool GetInputPoll();
 	bool IsQuitPressed();
+
+	// Inherited via IGameSystem
+	virtual void Update() override;
+	virtual void PreUpdate() override;
+	virtual void PostUpdate() override;
 };
 
