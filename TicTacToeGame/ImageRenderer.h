@@ -20,6 +20,15 @@ private:
 	bool init();
 	bool close();
 
+	//The window renderer
+	SDL_Renderer* m_renderer = nullptr;
+
+	//The surface contained by the window
+	SDL_Surface* m_screenSurface = nullptr;
+
+	//Current displayed texture
+	SDL_Texture* m_currentTexture = nullptr;
+
 public:
 
 	ImageRenderer();
@@ -35,16 +44,6 @@ public:
 	SDL_Window* Window = nullptr;
 
 	SDL_Texture* LoadTexture(std::string path);
-
-	//The window renderer
-	SDL_Renderer* Renderer = nullptr;
-
-	//The surface contained by the window
-	SDL_Surface* ScreenSurface = nullptr;
-
-	//Current displayed texture
-	SDL_Texture* CurrentTexture = nullptr;
-
 	bool LoadKeyPressImages();
 
 	//The images that correspond to a keypress
