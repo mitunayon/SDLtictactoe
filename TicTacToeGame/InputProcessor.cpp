@@ -11,13 +11,6 @@ InputProcessor::~InputProcessor()
 
 void InputProcessor::Update()
 {
-	//Reset Inputs - refactor this to PreUpdate();
-	m_upPressed = false;
-	m_downPressed = false;
-	m_leftPressed = false;
-	m_rightPressed = false;
-	m_quitGame = false;
-
 	// Update
 	while (GetInputPoll())
 	{
@@ -62,6 +55,12 @@ void InputProcessor::Update()
 
 void InputProcessor::PreUpdate()
 {
+	//Reset Inputs - refactor this to PreUpdate();
+	m_upPressed = false;
+	m_downPressed = false;
+	m_leftPressed = false;
+	m_rightPressed = false;
+	m_quitGame = false;
 }
 
 void InputProcessor::PostUpdate()
