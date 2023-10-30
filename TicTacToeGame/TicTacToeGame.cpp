@@ -4,77 +4,77 @@
 
 int main(int argc, char* args[])
 {
-	GameSetup* setupController = new GameSetup();
-	InputProcessor inputProcessor = InputProcessor();
-	ImageRenderer* imageRenderer = new ImageRenderer();
+	GameSetup* gSetupController = new GameSetup();
+	InputProcessor gInputProcessor = InputProcessor();
+	ImageRenderer* gImageRenderer = new ImageRenderer();
 
-	if (!setupController->init())
+	if (!gSetupController->init())
 	{
 		return 1;
 	}
 
 	//Main loop flag
-	bool quit = false;
+	bool gQuit = false;
 
 	//While application is running
-	while (!quit)
+	while (!gQuit)
 	{
-		while (inputProcessor.IsInputQueued())
+		while (gInputProcessor.IsInputQueued())
 		{
-			if (inputProcessor.InputEvent.type == SDL_QUIT)
+			if (gInputProcessor.InputEvent.type == SDL_QUIT)
 			{
-				quit = true;
+				gQuit = true;
 				break;
 			}
 
-			if (inputProcessor.InputEvent.type == SDL_KEYDOWN)
+			if (gInputProcessor.InputEvent.type == SDL_KEYDOWN)
 			{
 				// what is this?
-				SDL_Keycode key = inputProcessor.InputEvent.key.keysym.sym;
-				inputProcessor.SetCurrentInput(key);
+				SDL_Keycode key = gInputProcessor.InputEvent.key.keysym.sym;
+				gInputProcessor.SetCurrentInput(key);
 				//setupController->ProcessInput(key);
 			}
 
 			// Image Renderer loop
 			// Set image
-			switch (inputProcessor.CurrentInput)
+			switch (gInputProcessor.CurrentInput)
 			{
 			case SDLK_UP:
-				imageRenderer->gCurrentTexture = imageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_UP];
+				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_UP];
 				break;
 
 			case SDLK_DOWN:
-				imageRenderer->gCurrentTexture = imageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DOWN];
+				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DOWN];
 				break;
 
 			case SDLK_LEFT:
-				imageRenderer->gCurrentTexture = imageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_LEFT];
+				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_LEFT];
 				break;
 
 			case SDLK_RIGHT:
-				imageRenderer->gCurrentTexture = imageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
+				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
 				break;
 
 			default:
-				imageRenderer->gCurrentTexture = imageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
+				gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
 				break;
 			}
 		}
 
 
 		//Clear screen
-		SDL_RenderClear(imageRenderer->gRenderer);
+		SDL_RenderClear(gImageRenderer->Renderer);
 
 		//Render texture to screen
-		SDL_RenderCopy(imageRenderer->gRenderer, imageRenderer->gCurrentTexture, NULL, NULL);
+		SDL_RenderCopy(gImageRenderer->Renderer, gImageRenderer->CurrentTexture, NULL, NULL);
 
 		//Update the surface
-		SDL_RenderPresent(imageRenderer->gRenderer);
+		SDL_RenderPresent(gImageRenderer->Renderer);
 
 	}
 
 	//Free resources and close SDL
-	setupController->close();
+	gSetupController->close();
 
 	return 0;
 }

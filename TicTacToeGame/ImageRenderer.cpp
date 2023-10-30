@@ -14,16 +14,16 @@ ImageRenderer::~ImageRenderer()
 bool ImageRenderer::init()
 {
 	// Create window
-	gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (gWindow == NULL)
+	Window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	if (Window == NULL)
 	{
 		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 		return false;
 	}
 
 	//Create renderer for window
-	gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
-	if (gRenderer == NULL)
+	Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
+	if (Renderer == NULL)
 	{
 		printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
 		return false;
@@ -31,7 +31,7 @@ bool ImageRenderer::init()
 	else
 	{
 		//Initialise renderer color
-		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+		SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 		//Initialize PNG loading
 		int imgFlags = IMG_INIT_PNG;
@@ -42,7 +42,7 @@ bool ImageRenderer::init()
 		}
 		else
 		{
-			gScreenSurface = SDL_GetWindowSurface(gWindow);
+			ScreenSurface = SDL_GetWindowSurface(Window);
 		}
 
 		// Load key press images
@@ -60,14 +60,14 @@ bool ImageRenderer::close()
 	}
 
 	//Free loaded image
-	SDL_DestroyTexture(gCurrentTexture);
-	gCurrentTexture = NULL;
+	SDL_DestroyTexture(CurrentTexture);
+	CurrentTexture = NULL;
 
 	//Destroy window
-	SDL_DestroyRenderer(gRenderer);
-	SDL_DestroyWindow(gWindow);
-	gWindow = NULL;
-	gRenderer = NULL;
+	SDL_DestroyRenderer(Renderer);
+	SDL_DestroyWindow(Window);
+	Window = NULL;
+	Renderer = NULL;
 
 	// Quit SDL Subsystems
 	IMG_Quit();
@@ -78,13 +78,13 @@ bool ImageRenderer::close()
 SDL_Texture* ImageRenderer::LoadTexture(std::string path)
 {
 	//The final texture
-	if (gRenderer == nullptr)
+	if (Renderer == nullptr)
 	{
 		printf("Error: Renderer does not exist.");
 		return nullptr;
 	}
 
-	SDL_Texture* newTexture = IMG_LoadTexture(gRenderer, path.c_str());
+	SDL_Texture* newTexture = IMG_LoadTexture(Renderer, path.c_str());
 	return newTexture;
 }
 
