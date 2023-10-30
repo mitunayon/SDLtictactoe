@@ -3,6 +3,8 @@
 class GameSetup
 {
 public:
+	bool SetupComplete = false;
+	GameSetup();
 	~GameSetup();
 	//Initialises SDL
 	bool init();

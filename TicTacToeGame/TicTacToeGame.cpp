@@ -8,13 +8,13 @@ int main(int argc, char* args[])
 	InputProcessor* gInputProcessor = new InputProcessor();
 	ImageRenderer* gImageRenderer = new ImageRenderer();
 
-	if (!gSetupController->init())
-	{
-		return 1;
-	}
-
 	//Main loop flag
 	bool gQuit = false;
+
+	if (!gSetupController->SetupComplete)
+	{
+		gQuit = true;
+	}
 
 	//While application is running
 	while (!gQuit)

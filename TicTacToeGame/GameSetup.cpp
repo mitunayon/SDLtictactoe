@@ -2,6 +2,11 @@
 #include <SDL.h>
 #include <stdio.h>
 
+GameSetup::GameSetup()
+{
+	SetupComplete = init();
+}
+
 GameSetup::~GameSetup()
 {
 	close();
