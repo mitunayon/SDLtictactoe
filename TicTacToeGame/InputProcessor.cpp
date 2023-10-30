@@ -1,5 +1,9 @@
 #include "InputProcessor.h"
 
+InputProcessor::InputProcessor()
+{
+}
+
 InputProcessor::~InputProcessor()
 {
 
