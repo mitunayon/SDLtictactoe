@@ -23,6 +23,9 @@ private:
 	//The window renderer
 	SDL_Renderer* m_renderer = nullptr;
 
+	//The window we'll be rendering to
+	SDL_Window* m_window = nullptr;
+
 	//The surface contained by the window
 	SDL_Surface* m_screenSurface = nullptr;
 
@@ -39,9 +42,6 @@ public:
 	//Screen dimension constants
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
-
-	//The window we'll be rendering to
-	SDL_Window* Window = nullptr;
 
 	SDL_Texture* LoadTexture(std::string path);
 	bool LoadKeyPressImages();

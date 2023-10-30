@@ -26,15 +26,15 @@ void ImageRenderer::Update()
 bool ImageRenderer::init()
 {
 	// Create window
-	Window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (Window == nullptr)
+	m_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	if (m_window == nullptr)
 	{
 		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 		return false;
 	}
 
 	//Create renderer for window
-	m_renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
+	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	if (m_renderer == nullptr)
 	{
 		printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
@@ -54,7 +54,7 @@ bool ImageRenderer::init()
 		}
 		else
 		{
-			m_screenSurface = SDL_GetWindowSurface(Window);
+			m_screenSurface = SDL_GetWindowSurface(m_window);
 		}
 
 		// Load key press images
@@ -77,8 +77,8 @@ bool ImageRenderer::close()
 
 	//Destroy window
 	SDL_DestroyRenderer(m_renderer);
-	SDL_DestroyWindow(Window);
-	Window = nullptr;
+	SDL_DestroyWindow(m_window);
+	m_window = nullptr;
 	m_renderer = nullptr;
 
 	// Quit SDL Subsystems
