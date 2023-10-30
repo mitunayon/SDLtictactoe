@@ -30,18 +30,18 @@ public:
 	const int SCREEN_HEIGHT = 480;
 
 	//The window we'll be rendering to
-	SDL_Window* Window = NULL;
+	SDL_Window* Window = nullptr;
 
 	SDL_Texture* LoadTexture(std::string path);
 
 	//The window renderer
-	SDL_Renderer* Renderer = NULL;
+	SDL_Renderer* Renderer = nullptr;
 
 	//The surface contained by the window
 	SDL_Surface* ScreenSurface = nullptr;
 
 	//Current displayed texture
-	SDL_Texture* CurrentTexture = NULL;
+	SDL_Texture* CurrentTexture = nullptr;
 
 	bool LoadKeyPressImages();
 

@@ -27,7 +27,7 @@ int main(int argc, char* args[])
 		SDL_RenderClear(gImageRenderer->Renderer);
 
 		//Render texture to screen
-		SDL_RenderCopy(gImageRenderer->Renderer, gImageRenderer->CurrentTexture, NULL, NULL);
+		SDL_RenderCopy(gImageRenderer->Renderer, gImageRenderer->CurrentTexture, nullptr, nullptr);
 
 		//Update the surface
 		SDL_RenderPresent(gImageRenderer->Renderer);
