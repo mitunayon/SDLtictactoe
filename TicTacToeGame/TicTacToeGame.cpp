@@ -22,16 +22,7 @@ int main(int argc, char* args[])
 		gInputProcessor->Update();
 		gQuit = gInputProcessor->IsQuitPressed();
 
-		//gImageRenderer->Update();
-		//Clear screen
-		SDL_RenderClear(gImageRenderer->Renderer);
-
-		//Render texture to screen
-		SDL_RenderCopy(gImageRenderer->Renderer, gImageRenderer->CurrentTexture, nullptr, nullptr);
-
-		//Update the surface
-		SDL_RenderPresent(gImageRenderer->Renderer);
-
+		gImageRenderer->Update();
 	}
 
 	delete gSetupController;

@@ -11,6 +11,18 @@ ImageRenderer::~ImageRenderer()
 	ImageRenderer::close();
 }
 
+void ImageRenderer::Update()
+{
+	//Clear screen
+	SDL_RenderClear(Renderer);
+
+	//Render texture to screen
+	SDL_RenderCopy(Renderer, CurrentTexture, nullptr, nullptr);
+
+	//Update the surface
+	SDL_RenderPresent(Renderer);
+}
+
 bool ImageRenderer::init()
 {
 	// Create window
