@@ -11,7 +11,6 @@ InputProcessor::~InputProcessor()
 
 void InputProcessor::Update()
 {
-	// Update
 	while (PollLatestInputEvent())
 	{
 		if (m_inputEvent.type == SDL_QUIT)
@@ -25,32 +24,10 @@ void InputProcessor::Update()
 			SDL_Keycode key = m_inputEvent.key.keysym.sym;
 			SetCurrentInput(key);
 		}
-
-		//// Image Renderer loop
-		//// Set image
-		//switch (CurrentInput)
-		//{
-		//case SDLK_UP:
-		//	gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_UP];
-		//	break;
-
-		//case SDLK_DOWN:
-		//	gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DOWN];
-		//	break;
-
-		//case SDLK_LEFT:
-		//	gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_LEFT];
-		//	break;
-
-		//case SDLK_RIGHT:
-		//	gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_RIGHT];
-		//	break;
-
-		//default:
-		//	gImageRenderer->CurrentTexture = gImageRenderer->KeyPressTextures[KEY_PRESS_SURFACE_DEFAULT];
-		//	break;
-		//}
 	}
+
+	// Notify subscribers
+	Notify();
 }
 
 void InputProcessor::PreUpdate()
@@ -65,6 +42,26 @@ void InputProcessor::PreUpdate()
 
 void InputProcessor::PostUpdate()
 {
+}
+
+void InputProcessor::Attach(IInputObserver* observer)
+{
+	m_observers.push_back(observer);
+}
+
+void InputProcessor::Detach(IInputObserver* observer)
+{
+	m_observers.remove(observer);
+}
+
+void InputProcessor::Notify()
+{
+	std::list<IInputObserver*>::iterator iterator = m_observers.begin();
+	while (iterator != m_observers.end()) 
+	{
+		(*iterator)->OnInputUpdate(m_upPressed, m_downPressed, m_leftPressed, m_rightPressed);
+		++iterator;
+	}
 }
 
 void InputProcessor::SetCurrentInput(SDL_Keycode keycode)
