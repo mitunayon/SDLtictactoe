@@ -2,6 +2,7 @@
 #include "InputProcessor.h"
 #include "ImageRenderer.h"
 #include "World.h"
+#include "TicTacToeGame.h"
 
 int main(int argc, char* args[])
 {
@@ -9,6 +10,8 @@ int main(int argc, char* args[])
 	InputProcessor* gInputProcessor = new InputProcessor();
 	ImageRenderer* gImageRenderer = new ImageRenderer();
 	World* gWorld = new World();
+
+	TicTacToeGame* gTicTacToeGame = new TicTacToeGame(2, gInputProcessor, gImageRenderer, gWorld);
 
 	//Main loop flag
 	bool gQuit = false;

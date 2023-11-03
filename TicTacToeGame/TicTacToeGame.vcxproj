@@ -134,15 +134,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="TicTacToeGame.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="GameSetup.cpp" />
     <ClCompile Include="IGameSystem.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
-    <ClCompile Include="TicTacToeGame.cpp" />
+    <ClCompile Include="Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="TicTacToeGame.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="GameSetup.h" />
     <ClInclude Include="IGameSystem.h" />
