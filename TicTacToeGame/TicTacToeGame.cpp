@@ -1,14 +1,14 @@
 #include "GameSetup.h"
 #include "InputProcessor.h"
 #include "ImageRenderer.h"
-#include "GameObjectRegistry.h"
+#include "World.h"
 
 int main(int argc, char* args[])
 {
 	GameSetup* gSetupController = new GameSetup();
 	InputProcessor* gInputProcessor = new InputProcessor();
 	ImageRenderer* gImageRenderer = new ImageRenderer();
-	GameObjectRegistry* gGameObjectRegistry = new GameObjectRegistry();
+	World* gWorld = new World();
 
 	//Main loop flag
 	bool gQuit = false;
@@ -27,9 +27,9 @@ int main(int argc, char* args[])
 		gInputProcessor->PostUpdate();
 
 		// Simulate
-		gGameObjectRegistry->PreUpdate();
-		gGameObjectRegistry->Update();
-		gGameObjectRegistry->PostUpdate();
+		gWorld->PreUpdate();
+		gWorld->Update();
+		gWorld->PostUpdate();
 
 		//Render
 		gImageRenderer->PreUpdate();
@@ -42,7 +42,7 @@ int main(int argc, char* args[])
 	delete gSetupController;
 	delete gInputProcessor;
 	delete gImageRenderer;
-	delete gGameObjectRegistry;
+	delete gWorld;
 
 	return 0;
 }

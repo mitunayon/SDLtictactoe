@@ -1,7 +1,7 @@
 #pragma once
 #include "IGameSystem.h"
 
-class GameObjectRegistry : public IGameSystem
+class World : public IGameSystem
 {
 public:
 	virtual void PreUpdate() override;
