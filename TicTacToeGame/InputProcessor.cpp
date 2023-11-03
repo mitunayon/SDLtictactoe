@@ -12,7 +12,7 @@ InputProcessor::~InputProcessor()
 void InputProcessor::Update()
 {
 	// Update
-	while (GetInputPoll())
+	while (PollLatestInputEvent())
 	{
 		if (m_inputEvent.type == SDL_QUIT)
 		{
@@ -93,7 +93,7 @@ void InputProcessor::SetCurrentInput(SDL_Keycode keycode)
 	}
 }
 
-bool InputProcessor::GetInputPoll()
+bool InputProcessor::PollLatestInputEvent()
 {
 	return SDL_PollEvent(&m_inputEvent) != 0;
 }

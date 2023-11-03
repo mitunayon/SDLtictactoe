@@ -19,7 +19,7 @@ public:
 
 	SDL_Keycode CurrentInput;
 	void SetCurrentInput(SDL_Keycode keycode);
-	bool GetInputPoll();
+	bool PollLatestInputEvent();
 	bool IsQuitPressed();
 
 	// Inherited via IGameSystem

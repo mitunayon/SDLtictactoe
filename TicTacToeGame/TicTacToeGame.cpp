@@ -21,14 +21,17 @@ int main(int argc, char* args[])
 	//While application is running
 	while (!gQuit)
 	{
+		//Process
 		gInputProcessor->PreUpdate();
 		gInputProcessor->Update();
 		gInputProcessor->PostUpdate();
 
+		// Simulate
 		gGameObjectRegistry->PreUpdate();
 		gGameObjectRegistry->Update();
 		gGameObjectRegistry->PostUpdate();
 
+		//Render
 		gImageRenderer->PreUpdate();
 		gImageRenderer->Update();
 		gImageRenderer->PostUpdate();
