@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="GameSetup.cpp" />
     <ClCompile Include="IGameSystem.cpp" />
@@ -141,6 +142,7 @@
     <ClCompile Include="TicTacToeGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="GameSetup.h" />
     <ClInclude Include="IGameSystem.h" />
