@@ -13,6 +13,8 @@ int main(int argc, char* args[])
 
 	TicTacToeGame* gTicTacToeGame = new TicTacToeGame(2, gInputProcessor, gImageRenderer, gWorld);
 
+	int const MAX_FPS = 60;
+
 	//Main loop flag
 	bool gQuit = false;
 
@@ -40,6 +42,8 @@ int main(int argc, char* args[])
 		gImageRenderer->PostUpdate();
 		
 		gQuit = gInputProcessor->IsQuitPressed();
+
+		SDL_Delay(MAX_FPS);
 	}
 
 	delete gSetupController;
