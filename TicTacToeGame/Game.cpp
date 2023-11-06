@@ -13,18 +13,6 @@ Game::Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* 
 
 }
 
-void Game::Update()
-{
-}
-
-void Game::PreUpdate()
-{
-}
-
-void Game::PostUpdate()
-{
-}
-
 void Game::OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed)
 {
 	std::cout << upPressed << downPressed << leftPressed << rightPressed << std::endl;

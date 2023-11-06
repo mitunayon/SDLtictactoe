@@ -10,15 +10,3 @@ TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, 
 	// Create players
 	m_playercount = players;
 }
-
-void TicTacToeGame::Update()
-{
-}
-
-void TicTacToeGame::PreUpdate()
-{
-}
-
-void TicTacToeGame::PostUpdate()
-{
-}

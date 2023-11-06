@@ -11,10 +11,5 @@ private:
 
 public:
 	TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world);
-
-	// Inherited via Game
-	void Update() override;
-	void PreUpdate() override;
-	void PostUpdate() override;
 };
 
