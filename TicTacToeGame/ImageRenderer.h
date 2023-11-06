@@ -3,6 +3,9 @@
 #include <SDL_image.h>
 #include <string>
 #include "IGameSystem.h"
+#include <list>
+#include "IImageRendererPublisher.h"
+#include "IImageRendererObserver.h"
 
 //Key press surfaces constants
 enum KeyPressSurfaces
@@ -15,7 +18,7 @@ enum KeyPressSurfaces
 	KEY_PRESS_SURFACE_TOTAL
 };
 
-class ImageRenderer : public IGameSystem
+class ImageRenderer : public IGameSystem, public IImageRendererPublisher
 {
 private:
 	bool init();
@@ -32,6 +35,8 @@ private:
 
 	//Current displayed texture
 	SDL_Texture* m_currentTexture = nullptr;
+
+	std::list<IImageRendererObserver*> m_observers;
 
 public:
 
@@ -52,5 +57,10 @@ public:
 
 	//The images that correspond to a keypress
 	SDL_Texture* KeyPressTextures[KEY_PRESS_SURFACE_TOTAL];
+
+	// Inherited via IImageRendererPublisher
+	void Attach(IImageRendererObserver* observer) override;
+	void Detach(IImageRendererObserver* observer) override;
+	void Notify() override;
 };
 

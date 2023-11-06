@@ -87,6 +87,8 @@ void ImageRenderer::Update()
 
 	//Update the surface
 	SDL_RenderPresent(m_renderer);
+
+	Notify();
 }
 
 void ImageRenderer::PreUpdate()
@@ -154,5 +156,25 @@ bool ImageRenderer::LoadKeyPressImages()
 		success = false;
 	}
 	return success;
+}
+
+void ImageRenderer::Attach(IImageRendererObserver* observer)
+{
+	m_observers.push_back(observer);
+}
+
+void ImageRenderer::Detach(IImageRendererObserver* observer)
+{
+	m_observers.remove(observer);
+}
+
+void ImageRenderer::Notify()
+{
+	std::list<IImageRendererObserver*>::iterator iterator = m_observers.begin();
+	while (iterator != m_observers.end())
+	{
+		(*iterator)->OnRenderUpdate();
+		++iterator;
+	}
 }
 

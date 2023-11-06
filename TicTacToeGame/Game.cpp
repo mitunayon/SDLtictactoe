@@ -9,6 +9,7 @@ Game::Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* 
 
 	m_inputProcessor->Attach(this);
 	(*m_world).Attach(this);
+	m_imageRenderer->Attach(this);
 
 }
 
@@ -32,4 +33,9 @@ void Game::OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, boo
 void Game::OnWorldUpdate()
 {
 	std::cout << "WorldUpdate:" << std::endl;
+}
+
+void Game::OnRenderUpdate()
+{
+	std::cout << "OnRenderUpdate" << std::endl;
 }
