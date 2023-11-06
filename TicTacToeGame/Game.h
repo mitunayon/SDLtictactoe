@@ -20,15 +20,11 @@ public:
 	virtual void PostUpdate() = 0;
 
 	// Inherited via IInputObserver
-	void OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed) override;
-
-
+	virtual void OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed) override;
 	// Inherited via IWorldUpdateObserver
-	void OnWorldUpdate() override;
-
-
+	virtual void OnWorldUpdate() override;
 	// Inherited via IImageRendererObserver
-	void OnRenderUpdate() override;
+	virtual void OnRenderUpdate() override;
 
 };
 
