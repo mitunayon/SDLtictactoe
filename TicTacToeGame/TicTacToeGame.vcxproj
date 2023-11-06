@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IImageRendererPublisher.h" />
     <ClCompile Include="TicTacToeGame.cpp" />
     <ClCompile Include="World.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IImageRendererObserver.h" />
     <ClInclude Include="IInputObserver.h" />
     <ClInclude Include="IInputPublisher.h" />

@@ -3,11 +3,14 @@
 #include "InputProcessor.h"
 #include "ImageRenderer.h"
 #include "World.h"
+#include "GameObject.h"
 
 class TicTacToeGame : public Game
 {
 private:
 	int m_playercount = 0;
+
+	GameObject* m_player;
 
 public:
 	TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world);

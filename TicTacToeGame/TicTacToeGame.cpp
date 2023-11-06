@@ -5,7 +5,7 @@ TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, 
 : Game(inputProcessor, imageRenderer, world)
 {
 	// Create pieces
-
+	m_player = new GameObject(0,0);
 	// Create board
 
 	// Create players
@@ -16,12 +16,32 @@ void TicTacToeGame::OnInputUpdate(bool upPressed, bool downPressed, bool leftPre
 {
 	Game::OnInputUpdate(upPressed, downPressed, leftPressed, rightPressed);
 	std::cout << "TicTacToeGame: OnInputUpdate: " << std::endl;
+
+	if (upPressed)
+	{
+		m_player->Move(0,5);
+	}
+
+	if (downPressed) 
+	{
+		m_player->Move(0,- 5);
+	}
+
+	if (leftPressed)
+	{
+		m_player->Move(-5, 0);
+	}
+
+	if (rightPressed)
+	{
+		m_player->Move(5, 0);
+	}
 }
 
 void TicTacToeGame::OnWorldUpdate()
 {
 	Game::OnWorldUpdate();
-	std::cout << "TicTacToeGame: OnWorldUpdate: " << std::endl;
+	std::cout << "TicTacToeGame: OnWorldUpdate: X" << m_player->GetXPosition() << ",Y" << m_player->GetYPosition() << std::endl;
 }
 
 void TicTacToeGame::OnRenderUpdate()
