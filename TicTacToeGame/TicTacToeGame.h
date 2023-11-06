@@ -11,5 +11,9 @@ private:
 
 public:
 	TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world);
+
+	virtual void OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed) override;
+	virtual void OnWorldUpdate() override;
+	virtual void OnRenderUpdate() override;
 };
 
