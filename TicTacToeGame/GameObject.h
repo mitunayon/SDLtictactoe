@@ -2,14 +2,19 @@
 class GameObject
 {
 private:
-	int m_xPos;
-	int m_yPos;
+	float m_xPos;
+	float m_yPos;
 public:
-	GameObject(int xPosition, int yPosition);
+	GameObject(float xPosition, float yPosition);
 	~GameObject();
 
 	void Move(float x, float y);
-	int GetXPosition() { return m_xPos; }
-	int GetYPosition() { return m_yPos; }
+	float GetXPosition() { return m_xPos; }
+	float GetYPosition() { return m_yPos; }
 };
 
+class ChildGameObject : public GameObject
+{
+public:
+	ChildGameObject(float xPosition, float yPosition);
+};

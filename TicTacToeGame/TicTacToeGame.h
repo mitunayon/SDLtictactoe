@@ -1,8 +1,5 @@
 #pragma once
 #include "Game.h"
-#include "InputProcessor.h"
-#include "ImageRenderer.h"
-#include "World.h"
 #include "GameObject.h"
 
 class TicTacToeGame : public Game

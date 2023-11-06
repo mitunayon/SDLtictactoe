@@ -5,7 +5,8 @@ TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, 
 : Game(inputProcessor, imageRenderer, world)
 {
 	// Create pieces
-	m_player = new GameObject(0,0);
+	m_player = CreateGameObject<ChildGameObject>();
+
 	// Create board
 
 	// Create players

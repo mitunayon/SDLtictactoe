@@ -3,6 +3,7 @@
 #include "InputProcessor.h"
 #include "World.h"
 #include "ImageRenderer.h"
+#include "GameObject.h"
 
 class Game : public IInputObserver, public IWorldUpdateObserver, public IImageRendererObserver
 {
@@ -20,6 +21,13 @@ public:
 	virtual void OnWorldUpdate() override;
 	// Inherited via IImageRendererObserver
 	virtual void OnRenderUpdate() override;
+
+	template <typename T>
+	T* CreateGameObject()
+	{
+		static_assert(std::is_base_of_v<GameObject, T>);
+		return new T(0, 0);
+	}
 
 };
 
