@@ -146,6 +146,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="IInputObserver.h" />
     <ClInclude Include="IInputPublisher.h" />
+    <ClInclude Include="IWorldUpdateObserver.h" />
+    <ClInclude Include="IWorldUpdatePublisher.h" />
     <ClInclude Include="TicTacToeGame.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="GameSetup.h" />

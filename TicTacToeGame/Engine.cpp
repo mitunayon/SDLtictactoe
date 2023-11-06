@@ -48,6 +48,7 @@ int main(int argc, char* args[])
 		
 		gQuit = gInputProcessor->IsQuitPressed();
 
+		//Cap Framerate
 		auto endTime = std::chrono::high_resolution_clock::now();
 		const std::chrono::duration<double> delta = endTime - startTime;
 		int msToWait = static_cast<int>(std::round(MS_PER_FRAME - delta.count()));
@@ -61,3 +62,5 @@ int main(int argc, char* args[])
 
 	return 0;
 }
+
+

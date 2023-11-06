@@ -8,7 +8,8 @@ Game::Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* 
 	m_world = world;
 
 	m_inputProcessor->Attach(this);
-	//m_world->Attach
+	(*m_world).Attach(this);
+
 }
 
 void Game::Update()
@@ -26,4 +27,8 @@ void Game::PostUpdate()
 void Game::OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed)
 {
 	std::cout << upPressed << downPressed << leftPressed << rightPressed << std::endl;
+}
+
+void Game::OnWorldUpdate()
+{
 }

@@ -3,8 +3,9 @@
 #include "ImageRenderer.h"
 #include "World.h"
 #include "IGameSystem.h"
+#include "IWorldUpdateObserver.h"
 
-class Game : public IGameSystem, public IInputObserver
+class Game : public IGameSystem, public IInputObserver, public IWorldUpdateObserver
 {
 private:
 	InputProcessor* m_inputProcessor;
@@ -23,6 +24,10 @@ public:
 
 	// Inherited via IInputObserver
 	void OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed) override;
+
+
+	// Inherited via IWorldUpdateObserver
+	void OnWorldUpdate() override;
 
 };
 
