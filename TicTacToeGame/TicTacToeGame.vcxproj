@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(SolutionDir)Dependencies\SDL2-2.28.4\lib\x64;$(SolutionDir)Dependencies\SDL2_image-2.6.3\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\GitRepos\TicTacToeGame\TicTacToeGame\src;$(SolutionDir)Dependencies\SDL2-2.28.4\lib\x64;$(SolutionDir)Dependencies\SDL2_image-2.6.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL2-2.28.4\include;$(SolutionDir)Dependencies\SDL2_image-2.6.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\GitRepos\TicTacToeGame\TicTacToeGame\include;$(SolutionDir)Dependencies\SDL2-2.28.4\include;$(SolutionDir)Dependencies\SDL2_image-2.6.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,31 +133,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="IImageRendererPublisher.h" />
-    <ClCompile Include="TicTacToeGame.cpp" />
-    <ClCompile Include="World.cpp" />
-    <ClCompile Include="GameSetup.cpp" />
-    <ClCompile Include="IGameSystem.cpp" />
-    <ClCompile Include="ImageRenderer.cpp" />
-    <ClCompile Include="InputProcessor.cpp" />
-    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="include\IImageRendererPublisher.h" />
+    <ClCompile Include="src\TicTacToeGame.cpp" />
+    <ClCompile Include="src\World.cpp" />
+    <ClCompile Include="src\GameSetup.cpp" />
+    <ClCompile Include="src\IGameSystem.cpp" />
+    <ClCompile Include="src\ImageRenderer.cpp" />
+    <ClCompile Include="src\InputProcessor.cpp" />
+    <ClCompile Include="src\Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="IImageRendererObserver.h" />
-    <ClInclude Include="IInputObserver.h" />
-    <ClInclude Include="IInputPublisher.h" />
-    <ClInclude Include="IWorldUpdateObserver.h" />
-    <ClInclude Include="IWorldUpdatePublisher.h" />
-    <ClInclude Include="TicTacToeGame.h" />
-    <ClInclude Include="World.h" />
-    <ClInclude Include="GameSetup.h" />
-    <ClInclude Include="IGameSystem.h" />
-    <ClInclude Include="ImageRenderer.h" />
-    <ClInclude Include="InputProcessor.h" />
+    <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\IImageRendererObserver.h" />
+    <ClInclude Include="include\IInputObserver.h" />
+    <ClInclude Include="include\IInputPublisher.h" />
+    <ClInclude Include="include\IWorldUpdateObserver.h" />
+    <ClInclude Include="include\IWorldUpdatePublisher.h" />
+    <ClInclude Include="include\TicTacToeGame.h" />
+    <ClInclude Include="include\World.h" />
+    <ClInclude Include="include\GameSetup.h" />
+    <ClInclude Include="include\IGameSystem.h" />
+    <ClInclude Include="include\ImageRenderer.h" />
+    <ClInclude Include="include\InputProcessor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
