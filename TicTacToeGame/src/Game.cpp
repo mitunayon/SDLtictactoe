@@ -21,6 +21,13 @@ void Game::OnInputUpdate(bool upPressed, bool downPressed, bool leftPressed, boo
 void Game::OnWorldUpdate()
 {
 	std::cout << "WorldUpdate:" << std::endl;
+
+	for (auto var : *m_world->GetGameObjectsInWorld())
+	{
+
+	}
+
+
 }
 
 void Game::OnRenderUpdate()

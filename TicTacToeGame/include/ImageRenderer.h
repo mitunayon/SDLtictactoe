@@ -6,6 +6,7 @@
 #include <list>
 #include "IImageRendererPublisher.h"
 #include "IImageRendererObserver.h"
+#include "IRenderable.h"
 
 //Key press surfaces constants
 enum KeyPressSurfaces
@@ -37,6 +38,7 @@ private:
 	SDL_Texture* m_currentTexture = nullptr;
 
 	std::list<IImageRendererObserver*> m_observers;
+	std::list<IRenderable*> m_renderables;
 
 public:
 
@@ -62,5 +64,7 @@ public:
 	void Attach(IImageRendererObserver* observer) override;
 	void Detach(IImageRendererObserver* observer) override;
 	void Notify() override;
+
+	void AddRenderable(IRenderable* renderable);
 };
 

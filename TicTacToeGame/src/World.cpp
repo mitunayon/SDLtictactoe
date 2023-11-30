@@ -1,6 +1,10 @@
 #include "World.h"
 
 
+World::World()
+{
+}
+
 void World::PreUpdate()
 {
 	// do something
@@ -34,4 +38,14 @@ void World::Notify()
 		(*iterator)->OnWorldUpdate();
 		++iterator;
 	}
+}
+
+void World::AddGameObject(GameObject* gameObject)
+{
+	m_gameObjects.push_back(gameObject);
+}
+
+std::vector<GameObject*>* World::GetGameObjectsInWorld()
+{
+	return &m_gameObjects;
 }

@@ -4,6 +4,7 @@
 #include "World.h"
 #include "ImageRenderer.h"
 #include "GameObject.h"
+#include "IRenderable.h"
 
 class Game : public IInputObserver, public IWorldUpdateObserver, public IImageRendererObserver
 {
@@ -26,7 +27,13 @@ public:
 	T* CreateGameObject()
 	{
 		static_assert(std::is_base_of_v<GameObject, T>);
-		return new T(0, 0);
+
+		T* gameObject = new T(0, 0);
+
+		m_world->AddGameObject(gameObject);
+		m_imageRenderer->AddRenderable(gameObject);
+
+		return gameObject;
 	}
 
 };

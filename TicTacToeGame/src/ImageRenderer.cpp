@@ -79,16 +79,28 @@ bool ImageRenderer::close()
 // Public
 void ImageRenderer::Update()
 {
+	Notify();
+
 	//Clear screen
 	SDL_RenderClear(m_renderer);
 
 	//Render texture to screen
-	SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
+	// for each rendered gameobject in the world, call SDL_RenderCopy
+	std::list<IRenderable*>::iterator iterator = m_renderables.begin();
+	while (iterator != m_renderables.end())
+	{
+		// Render this Gameobject (IRenderable) to the position it is in.
+		// How do we render an image to a location?
+
+		// have a look at the LTexture::render function https://lazyfoo.net/tutorials/SDL/10_color_keying/index.php
+
+		SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
+		++iterator;
+	}
 
 	//Update the surface
 	SDL_RenderPresent(m_renderer);
 
-	Notify();
 }
 
 void ImageRenderer::PreUpdate()
@@ -176,5 +188,10 @@ void ImageRenderer::Notify()
 		(*iterator)->OnRenderUpdate();
 		++iterator;
 	}
+}
+
+void ImageRenderer::AddRenderable(IRenderable* renderable)
+{
+	m_renderables.push_back(renderable);
 }
 

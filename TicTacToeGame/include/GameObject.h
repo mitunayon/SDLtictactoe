@@ -1,4 +1,6 @@
 #pragma once
+#include "IRenderable.h"
+
 class GameObject
 {
 private:
@@ -13,7 +15,7 @@ public:
 	float GetYPosition() { return m_yPos; }
 };
 
-class ChildGameObject : public GameObject
+class ChildGameObject : public GameObject, public IRenderable
 {
 public:
 	ChildGameObject(float xPosition, float yPosition);
