@@ -7,6 +7,7 @@
 #include "IImageRendererPublisher.h"
 #include "IImageRendererObserver.h"
 #include "IRenderable.h"
+#include "GameTexture.h"
 
 //Key press surfaces constants
 enum KeyPressSurfaces
@@ -39,6 +40,9 @@ private:
 
 	std::list<IImageRendererObserver*> m_observers;
 	std::list<IRenderable*> m_renderables;
+
+	GameTexture* fooTexture;
+	GameTexture* bgTexture;
 
 public:
 

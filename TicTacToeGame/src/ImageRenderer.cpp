@@ -1,5 +1,6 @@
 #include "ImageRenderer.h"
 #include <stdio.h>
+#include <GameTexture.h>
 
 ImageRenderer::ImageRenderer()
 {
@@ -46,6 +47,13 @@ bool ImageRenderer::init()
 			m_screenSurface = SDL_GetWindowSurface(m_window);
 		}
 
+		//loading test textures
+		bgTexture = new GameTexture(m_renderer);
+		bgTexture->loadFromFile("Assets/background.png");
+
+		fooTexture = new GameTexture(m_renderer);
+		fooTexture->loadFromFile("Assets/foo.png");
+
 		// Load key press images
 		return LoadKeyPressImages();
 	}
@@ -63,6 +71,10 @@ bool ImageRenderer::close()
 	//Free loaded image
 	SDL_DestroyTexture(m_currentTexture);
 	m_currentTexture = nullptr;
+
+	//Free loaded images
+	fooTexture->free();
+	bgTexture->free();
 
 	//Destroy window
 	SDL_DestroyRenderer(m_renderer);
@@ -82,19 +94,25 @@ void ImageRenderer::Update()
 	Notify();
 
 	//Clear screen
+	SDL_SetRenderDrawColor(m_renderer, 128, 128, 128, 0xFF);
 	SDL_RenderClear(m_renderer);
 
+	//Scene Textures
+	//background
+	bgTexture->render(0, 0);
+
+	//foreground
+	fooTexture->render(240, 190);
+
 	//Render texture to screen
-	// for each rendered gameobject in the world, call SDL_RenderCopy
 	std::list<IRenderable*>::iterator iterator = m_renderables.begin();
 	while (iterator != m_renderables.end())
 	{
 		// Render this Gameobject (IRenderable) to the position it is in.
-		// How do we render an image to a location?
+		//iterator->
+		fooTexture->render(240, 190);
 
-		// have a look at the LTexture::render function https://lazyfoo.net/tutorials/SDL/10_color_keying/index.php
-
-		SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
+		//SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
 		++iterator;
 	}
 
