@@ -6,7 +6,8 @@
 #include <list>
 #include "IImageRendererPublisher.h"
 #include "IImageRendererObserver.h"
-#include "IRenderable.h"
+#include "GameObject.h"
+#include <map>
 #include "GameTexture.h"
 
 //Key press surfaces constants
@@ -39,7 +40,8 @@ private:
 	SDL_Texture* m_currentTexture = nullptr;
 
 	std::list<IImageRendererObserver*> m_observers;
-	std::list<IRenderable*> m_renderables;
+	std::map<GameObject*, GameTexture*> m_renderables;
+	std::map<std::string, GameTexture*> m_loadedTextures;
 
 	GameTexture* fooTexture;
 	GameTexture* bgTexture;
@@ -69,6 +71,6 @@ public:
 	void Detach(IImageRendererObserver* observer) override;
 	void Notify() override;
 
-	void AddRenderable(IRenderable* renderable);
+	void AddGameObject(GameObject* renderable);
 };
 

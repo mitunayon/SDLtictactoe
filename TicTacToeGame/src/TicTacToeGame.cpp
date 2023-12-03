@@ -4,10 +4,14 @@
 TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world)
 : Game(inputProcessor, imageRenderer, world)
 {
-	// Create pieces
-	m_player = CreateGameObject<ChildGameObject>();
-
 	// Create board
+	m_board = CreateGameObject<BoardGameObject>("Assets/background.png");
+
+	// Create pieces
+	m_player = CreateGameObject<BoardGameObject>("Assets/foo.png");
+
+	// Create pieces
+	m_player = CreateGameObject<BoardGameObject>("Assets/foo.png");
 
 	// Create players
 	m_playercount = players;

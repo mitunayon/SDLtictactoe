@@ -48,11 +48,8 @@ bool ImageRenderer::init()
 		}
 
 		//loading test textures
-		bgTexture = new GameTexture(m_renderer);
-		bgTexture->loadFromFile("Assets/background.png");
-
-		fooTexture = new GameTexture(m_renderer);
-		fooTexture->loadFromFile("Assets/foo.png");
+		bgTexture = new GameTexture(m_renderer, "Assets/background.png");
+		fooTexture = new GameTexture(m_renderer, "Assets/foo.png");
 
 		// Load key press images
 		return LoadKeyPressImages();
@@ -76,6 +73,15 @@ bool ImageRenderer::close()
 	fooTexture->free();
 	bgTexture->free();
 
+	//Free loaded gametextures
+	for (auto it = m_loadedTextures.begin(); it != m_loadedTextures.end(); ++it)
+	{
+		GameTexture* texture = it->second;
+		delete texture;
+	}
+
+	m_loadedTextures.clear();
+
 	//Destroy window
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
@@ -97,28 +103,17 @@ void ImageRenderer::Update()
 	SDL_SetRenderDrawColor(m_renderer, 128, 128, 128, 0xFF);
 	SDL_RenderClear(m_renderer);
 
-	//Scene Textures
-	//background
-	bgTexture->render(0, 0);
-
-	//foreground
-	fooTexture->render(240, 190);
-
-	//Render texture to screen
-	std::list<IRenderable*>::iterator iterator = m_renderables.begin();
-	while (iterator != m_renderables.end())
+	for (auto const& i : m_renderables)
 	{
-		// Render this Gameobject (IRenderable) to the position it is in.
-		//iterator->
-		fooTexture->render(240, 190);
+		GameObject* gameObject = i.first;
+		GameTexture* texture = i.second;
 
-		//SDL_RenderCopy(m_renderer, m_currentTexture, nullptr, nullptr);
-		++iterator;
+		SDL_Rect renderQuad = { gameObject->GetXPosition(), gameObject->GetYPosition(), texture->getWidth(), texture->getHeight() };
+		SDL_RenderCopy(m_renderer, texture->getSDLTexture(), nullptr, &renderQuad);
 	}
 
 	//Update the surface
 	SDL_RenderPresent(m_renderer);
-
 }
 
 void ImageRenderer::PreUpdate()
@@ -208,8 +203,27 @@ void ImageRenderer::Notify()
 	}
 }
 
-void ImageRenderer::AddRenderable(IRenderable* renderable)
+void ImageRenderer::AddGameObject(GameObject* renderable)
 {
-	m_renderables.push_back(renderable);
+	// Check if GameTexture already exists for this asset
+	GameTexture* texture;
+	std::string path = renderable->GetSpritePath();
+	auto iterator = m_loadedTextures.find(path);
+	if (iterator != m_loadedTextures.end())
+	{
+		// asset already created, use loaded gametexture
+		texture = m_loadedTextures.at(path);
+
+	}
+	else
+	{
+		// asset not yet loaded, create new gametexture.
+		texture = new GameTexture(m_renderer, path);
+		m_loadedTextures.insert(std::pair<std::string, GameTexture*>(path, texture));
+	}
+
+	// Register renderable to gametexture
+	m_renderables.insert(std::pair<GameObject*, GameTexture*>(renderable, texture));
+
 }
 

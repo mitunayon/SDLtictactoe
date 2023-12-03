@@ -6,7 +6,7 @@
 class GameTexture
 {
 public:
-	GameTexture(SDL_Renderer* renderer);
+	GameTexture(SDL_Renderer* renderer, std::string spritePath);
 	~GameTexture();
 
 	bool loadFromFile(std::string path);
@@ -20,6 +20,8 @@ public:
 	//Gets image dimensions
 	int getWidth();
 	int getHeight();
+
+	SDL_Texture* getSDLTexture();
 
 private:
 	SDL_Renderer* mRenderer;

@@ -4,7 +4,6 @@
 #include "World.h"
 #include "ImageRenderer.h"
 #include "GameObject.h"
-#include "IRenderable.h"
 
 class Game : public IInputObserver, public IWorldUpdateObserver, public IImageRendererObserver
 {
@@ -24,14 +23,14 @@ public:
 	virtual void OnRenderUpdate() override;
 
 	template <typename T>
-	T* CreateGameObject()
+	T* CreateGameObject(std::string spritePath)
 	{
 		static_assert(std::is_base_of_v<GameObject, T>);
 
-		T* gameObject = new T(0, 0);
+		T* gameObject = new T(0, 0, spritePath);
 
 		m_world->AddGameObject(gameObject);
-		m_imageRenderer->AddRenderable(gameObject);
+		m_imageRenderer->AddGameObject(gameObject);
 
 		return gameObject;
 	}

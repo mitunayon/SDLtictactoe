@@ -1,22 +1,33 @@
 #pragma once
-#include "IRenderable.h"
+#include <string>
 
 class GameObject
 {
 private:
-	float m_xPos;
-	float m_yPos;
+	int m_xPos;
+	int m_yPos;
+
+protected:
+	std::string m_spritePath;
+	virtual void Update() = 0;
+
 public:
-	GameObject(float xPosition, float yPosition);
+	GameObject(int xPosition, int yPosition, std::string m_spritePath);
 	~GameObject();
 
-	void Move(float x, float y);
-	float GetXPosition() { return m_xPos; }
-	float GetYPosition() { return m_yPos; }
+	void Move(int x, int y);
+	int GetXPosition() { return m_xPos; }
+	int GetYPosition() { return m_yPos; }
+
+	// Returns the sprite asset path
+	std::string GetSpritePath();
 };
 
-class ChildGameObject : public GameObject, public IRenderable
+class BoardGameObject : public GameObject
 {
 public:
-	ChildGameObject(float xPosition, float yPosition);
+	BoardGameObject(int xPosition, int yPosition, std::string spritePath);
+
+	// Inherited via GameObject
+	virtual void Update() override;
 };

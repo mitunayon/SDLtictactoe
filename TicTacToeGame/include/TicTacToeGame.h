@@ -8,6 +8,7 @@ private:
 	int m_playercount = 0;
 
 	GameObject* m_player;
+	GameObject* m_board;
 
 public:
 	TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world);

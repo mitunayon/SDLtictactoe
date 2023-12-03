@@ -1,13 +1,14 @@
 #include "GameTexture.h"
 #include <SDL_image.h>
 
-GameTexture::GameTexture(SDL_Renderer* renderer)
+GameTexture::GameTexture(SDL_Renderer* renderer, std::string spritePath)
 {
 	mTexture = nullptr;
 	mWidth = 0;
 	mHeight = 0;
 
 	mRenderer = renderer;
+	loadFromFile(spritePath);
 }
 
 GameTexture::~GameTexture()
@@ -85,5 +86,10 @@ int GameTexture::getWidth()
 int GameTexture::getHeight()
 {
 	return mHeight;
+}
+
+SDL_Texture* GameTexture::getSDLTexture()
+{
+	return mTexture;
 }
 
