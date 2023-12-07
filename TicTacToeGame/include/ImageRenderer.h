@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include <map>
 #include "GameTexture.h"
+#include "World.h"
 
 //Key press surfaces constants
 enum KeyPressSurfaces
@@ -21,6 +22,7 @@ enum KeyPressSurfaces
 	KEY_PRESS_SURFACE_TOTAL
 };
 
+// Renders GameObjects within World.
 class ImageRenderer : public IGameSystem, public IImageRendererPublisher
 {
 private:
@@ -46,9 +48,13 @@ private:
 	GameTexture* fooTexture;
 	GameTexture* bgTexture;
 
+	// Dependencies
+
+	World* m_world;
+
 public:
 
-	ImageRenderer();
+	ImageRenderer(World* world);
 	~ImageRenderer();
 
 	// Inherited via IGameSystem

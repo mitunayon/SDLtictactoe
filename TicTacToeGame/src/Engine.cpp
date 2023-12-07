@@ -8,10 +8,10 @@
 
 int main(int argc, char* args[])
 {
+	World* gWorld = new World();
 	GameSetup* gSetupController = new GameSetup();
 	InputProcessor* gInputProcessor = new InputProcessor();
-	ImageRenderer* gImageRenderer = new ImageRenderer();
-	World* gWorld = new World();
+	ImageRenderer* gImageRenderer = new ImageRenderer(gWorld);
 
 	TicTacToeGame* gTicTacToeGame = new TicTacToeGame(2, gInputProcessor, gImageRenderer, gWorld);
 

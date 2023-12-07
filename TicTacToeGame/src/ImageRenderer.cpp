@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <GameTexture.h>
 
-ImageRenderer::ImageRenderer()
+ImageRenderer::ImageRenderer(World* world)
 {
+	m_world = world;
 	ImageRenderer::init();
 }
 
@@ -12,7 +13,6 @@ ImageRenderer::~ImageRenderer()
 	ImageRenderer::close();
 }
 
-// Private
 bool ImageRenderer::init()
 {
 	// Create window
