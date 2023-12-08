@@ -51,7 +51,7 @@ private:
 
 	// Dependencies
 
-	World* m_world;
+	World* const m_world;
 
 public:
 

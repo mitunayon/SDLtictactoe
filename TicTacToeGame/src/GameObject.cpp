@@ -1,9 +1,9 @@
 #include "GameObject.h"
 
-GameObject::GameObject(int xPosition, int yPosition, std::string spritePath)
+GameObject::GameObject(int xPosition, int yPosition, std::string spritePath) :
+	m_spritePath(spritePath)
 {
 	m_position = Vector2(xPosition, yPosition);
-	m_spritePath = spritePath;
 }
 
 GameObject::~GameObject()

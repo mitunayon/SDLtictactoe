@@ -3,12 +3,11 @@
 
 #include "GameObject.h"
 
-Game::Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world)
+Game::Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world) :
+	m_inputProcessor(inputProcessor),
+	m_imageRenderer(imageRenderer),
+	m_world(world)
 {
-	m_inputProcessor = inputProcessor;
-	m_imageRenderer = imageRenderer;
-	m_world = world;
-
 	m_inputProcessor->Attach(this);
 	(*m_world).Attach(this);
 	m_imageRenderer->Attach(this);

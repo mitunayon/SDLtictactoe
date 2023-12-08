@@ -3,9 +3,9 @@
 #include "GameObject.h"
 #include "World.h"
 
-ImageRenderer::ImageRenderer(World* world)
+ImageRenderer::ImageRenderer(World* world) :
+	m_world(world)
 {
-	m_world = world;
 	ImageRenderer::init();
 }
 

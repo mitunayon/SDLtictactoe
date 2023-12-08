@@ -11,9 +11,9 @@ class GameObject;
 class Game : public IInputObserver, public IWorldUpdateObserver, public IImageRendererObserver
 {
 private:
-	InputProcessor* m_inputProcessor;
-	ImageRenderer* m_imageRenderer;
-	World* m_world;
+	InputProcessor* const m_inputProcessor;
+	ImageRenderer* const m_imageRenderer;
+	World* const m_world;
 
 public:
 	Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world);

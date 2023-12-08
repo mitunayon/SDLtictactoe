@@ -8,7 +8,7 @@ private:
 	Vector2 m_position;
 
 protected:
-	std::string m_spritePath;
+	const std::string m_spritePath;
 	virtual void Update() = 0;
 
 public:

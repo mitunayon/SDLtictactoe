@@ -1,13 +1,13 @@
 #include "GameTexture.h"
 #include <SDL_image.h>
 
-GameTexture::GameTexture(SDL_Renderer* renderer, std::string spritePath)
+GameTexture::GameTexture(SDL_Renderer* renderer, std::string spritePath) :
+	m_renderer(renderer)
 {
-	mTexture = nullptr;
-	mWidth = 0;
-	mHeight = 0;
+	m_texture = nullptr;
+	m_width = 0;
+	m_height = 0;
 
-	mRenderer = renderer;
 	loadFromFile(spritePath);
 }
 
@@ -37,7 +37,7 @@ bool GameTexture::loadFromFile(std::string path)
 	
 		//Create texture from surface pixels
 		//newTexture = IMG_LoadTexture(mRenderer, path.c_str());
-		newTexture = SDL_CreateTextureFromSurface(mRenderer, loadedSurface);
+		newTexture = SDL_CreateTextureFromSurface(m_renderer, loadedSurface);
 		if (newTexture == nullptr)
 		{
 			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
@@ -45,8 +45,8 @@ bool GameTexture::loadFromFile(std::string path)
 		else
 		{
 			//Get image dimensions
-			mWidth = loadedSurface->w;
-			mHeight = loadedSurface->h;
+			m_width = loadedSurface->w;
+			m_height = loadedSurface->h;
 		}
 
 		// Get rif of old loaded surface
@@ -54,42 +54,42 @@ bool GameTexture::loadFromFile(std::string path)
 	}
 
 	//Return success
-	mTexture = newTexture;
-	return mTexture != nullptr;
+	m_texture = newTexture;
+	return m_texture != nullptr;
 }
 
 void GameTexture::free()
 {
 	//Free Texture if it exists
-	if (mTexture != nullptr)
+	if (m_texture != nullptr)
 	{
-		SDL_DestroyTexture(mTexture);
-		mTexture = nullptr;
-		mWidth = 0;
-		mHeight = 0;
+		SDL_DestroyTexture(m_texture);
+		m_texture = nullptr;
+		m_width = 0;
+		m_height = 0;
 	}
 }
 
 void GameTexture::render(int x, int y)
 {
 	//Set renderering space and render to screen
-	SDL_Rect renderQuad = { x,y, mWidth, mHeight };
-	SDL_RenderCopy(mRenderer, mTexture, nullptr, &renderQuad);
+	SDL_Rect renderQuad = { x,y, m_width, m_height };
+	SDL_RenderCopy(m_renderer, m_texture, nullptr, &renderQuad);
 		
 }
 
 int GameTexture::getWidth()
 {
-	return mWidth;
+	return m_width;
 }
 
 int GameTexture::getHeight()
 {
-	return mHeight;
+	return m_height;
 }
 
 SDL_Texture* GameTexture::getSDLTexture()
 {
-	return mTexture;
+	return m_texture;
 }
 

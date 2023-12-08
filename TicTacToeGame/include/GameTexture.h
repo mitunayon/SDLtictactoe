@@ -24,13 +24,13 @@ public:
 	SDL_Texture* getSDLTexture();
 
 private:
-	SDL_Renderer* mRenderer;
+	SDL_Renderer* const m_renderer;
 
 	//the actual hardware texture
-	SDL_Texture* mTexture;
+	SDL_Texture* m_texture;
 
 	//Image dimensions
-	int mWidth;
-	int mHeight;
+	int m_width;
+	int m_height;
 };
 
