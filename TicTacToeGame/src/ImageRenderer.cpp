@@ -108,7 +108,7 @@ void ImageRenderer::Update()
 		GameObject* gameObject = i.first;
 		GameTexture* texture = i.second;
 
-		SDL_Rect renderQuad = { gameObject->GetXPosition(), gameObject->GetYPosition(), texture->getWidth(), texture->getHeight() };
+		SDL_Rect renderQuad = { gameObject->GetPosition().X, gameObject->GetPosition().Y, texture->getWidth(), texture->getHeight()};
 		SDL_RenderCopy(m_renderer, texture->getSDLTexture(), nullptr, &renderQuad);
 	}
 

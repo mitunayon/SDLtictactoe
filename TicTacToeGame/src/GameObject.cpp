@@ -2,8 +2,7 @@
 
 GameObject::GameObject(int xPosition, int yPosition, std::string spritePath)
 {
-	m_xPos = xPosition;
-	m_yPos = yPosition;
+	m_position = Vector2(xPosition, yPosition);
 	m_spritePath = spritePath;
 }
 
@@ -13,8 +12,8 @@ GameObject::~GameObject()
 
 void GameObject::Move(int x, int y)
 {
-	m_xPos += x;
-	m_yPos += y;
+	m_position.X += x;
+	m_position.Y += y;
 }
 
 std::string GameObject::GetSpritePath()

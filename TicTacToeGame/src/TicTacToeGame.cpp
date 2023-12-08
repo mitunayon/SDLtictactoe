@@ -4,14 +4,11 @@
 TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world)
 : Game(inputProcessor, imageRenderer, world)
 {
+	// Create pieces
+	m_player = CreateGameObject<BoardGameObject>("Assets/foo.png");
+
 	// Create board
 	m_board = CreateGameObject<BoardGameObject>("Assets/background.png");
-
-	// Create pieces
-	m_player = CreateGameObject<BoardGameObject>("Assets/foo.png");
-
-	// Create pieces
-	m_player = CreateGameObject<BoardGameObject>("Assets/foo.png");
 
 	// Create players
 	m_playercount = players;
@@ -46,7 +43,7 @@ void TicTacToeGame::OnInputUpdate(bool upPressed, bool downPressed, bool leftPre
 void TicTacToeGame::OnWorldUpdate()
 {
 	Game::OnWorldUpdate();
-	std::cout << "TicTacToeGame: OnWorldUpdate: X" << m_player->GetXPosition() << ",Y" << m_player->GetYPosition() << std::endl;
+	std::cout << "TicTacToeGame: OnWorldUpdate: X" << m_player->GetPosition().X << ",Y" << m_player->GetPosition().Y << std::endl;
 }
 
 void TicTacToeGame::OnRenderUpdate()

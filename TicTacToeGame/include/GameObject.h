@@ -1,11 +1,11 @@
 #pragma once
 #include <string>
+#include "Vector2.h"
 
 class GameObject
 {
 private:
-	int m_xPos;
-	int m_yPos;
+	Vector2 m_position;
 
 protected:
 	std::string m_spritePath;
@@ -16,8 +16,7 @@ public:
 	~GameObject();
 
 	void Move(int x, int y);
-	int GetXPosition() { return m_xPos; }
-	int GetYPosition() { return m_yPos; }
+	Vector2& GetPosition() { return m_position; }
 
 	// Returns the sprite asset path
 	std::string GetSpritePath();
