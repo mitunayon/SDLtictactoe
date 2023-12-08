@@ -1,13 +1,11 @@
 #include "World.h"
 
-
 World::World()
 {
 }
 
 void World::PreUpdate()
 {
-	// do something
 }
 
 void World::Update()
@@ -17,7 +15,6 @@ void World::Update()
 
 void World::PostUpdate()
 {
-	// doo something
 }
 
 void World::Attach(IWorldUpdateObserver* observer)
