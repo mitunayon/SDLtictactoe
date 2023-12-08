@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 
+#include "GameObject.h"
+
 Game::Game(InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world)
 {
 	m_inputProcessor = inputProcessor;

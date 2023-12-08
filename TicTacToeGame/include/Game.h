@@ -1,10 +1,12 @@
 #pragma once
-#include "IGameSystem.h"
-#include "InputProcessor.h"
+#include "IInputObserver.h"
+#include "IWorldUpdateObserver.h"
+#include "IImageRendererObserver.h"
 #include "World.h"
 #include "ImageRenderer.h"
-#include "GameObject.h"
-#include "IInputObserver.h"
+#include "InputProcessor.h"
+
+class GameObject;
 
 class Game : public IInputObserver, public IWorldUpdateObserver, public IImageRendererObserver
 {

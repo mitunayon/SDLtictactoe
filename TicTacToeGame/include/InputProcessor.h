@@ -1,7 +1,7 @@
 #pragma once
-#include <SDL.h>
 #include "IGameSystem.h"
 #include "IInputPublisher.h"
+#include <SDL.h>
 #include <list>
 
 class InputProcessor : public IGameSystem, public IInputPublisher

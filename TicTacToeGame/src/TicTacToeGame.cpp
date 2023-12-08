@@ -1,5 +1,6 @@
 #include "TicTacToeGame.h"
 #include <iostream>
+#include "GameObject.h"
 
 TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, ImageRenderer* imageRenderer, World* world)
 : Game(inputProcessor, imageRenderer, world)
@@ -7,7 +8,6 @@ TicTacToeGame::TicTacToeGame(const int players, InputProcessor* inputProcessor, 
 
 	// Create board
 	m_board = CreateGameObject<BoardGameObject>("Assets/background.png");
-
 	// Create pieces
 	m_player = CreateGameObject<BoardGameObject>("Assets/foo.png");
 
