@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include "IGameSystem.h"
 #include "IInputPublisher.h"
-#include "IInputObserver.h"
 #include <list>
 
 class InputProcessor : public IGameSystem, public IInputPublisher

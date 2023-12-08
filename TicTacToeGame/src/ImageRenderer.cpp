@@ -1,6 +1,7 @@
 #include "ImageRenderer.h"
-#include <stdio.h>
-#include <GameTexture.h>
+#include "GameTexture.h"
+#include "GameObject.h"
+#include "World.h"
 
 ImageRenderer::ImageRenderer(World* world)
 {

@@ -2,14 +2,15 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
-#include "IGameSystem.h"
 #include <list>
-#include "IImageRendererPublisher.h"
-#include "IImageRendererObserver.h"
-#include "GameObject.h"
 #include <map>
-#include "GameTexture.h"
-#include "World.h"
+
+#include "IGameSystem.h"
+#include "IImageRendererPublisher.h"
+
+class GameObject;
+class GameTexture;
+class World;
 
 //Key press surfaces constants
 enum KeyPressSurfaces

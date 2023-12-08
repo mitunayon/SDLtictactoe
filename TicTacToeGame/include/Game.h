@@ -4,6 +4,7 @@
 #include "World.h"
 #include "ImageRenderer.h"
 #include "GameObject.h"
+#include "IInputObserver.h"
 
 class Game : public IInputObserver, public IWorldUpdateObserver, public IImageRendererObserver
 {
