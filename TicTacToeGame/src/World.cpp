@@ -45,7 +45,7 @@ void World::AddGameObject(GameObject* gameObject)
 	m_gameObjects.push_back(gameObject);
 }
 
-std::vector<GameObject*>* World::GetGameObjectsInWorld()
+std::list<GameObject*>* World::GetGameObjectsInWorld()
 {
 	return &m_gameObjects;
 }
