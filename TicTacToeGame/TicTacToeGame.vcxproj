@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="include\IImageRendererPublisher.h" />
@@ -142,10 +143,11 @@
     <ClCompile Include="src\IGameSystem.cpp" />
     <ClCompile Include="src\ImageRenderer.cpp" />
     <ClCompile Include="src\InputProcessor.cpp" />
-    <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\GameTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\GameEngine.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\IImageRendererObserver.h" />
