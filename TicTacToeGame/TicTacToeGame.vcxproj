@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\GitRepos\TicTacToeGame\TicTacToeGame\src;$(SolutionDir)Dependencies\SDL2-2.28.4\lib\x64;$(SolutionDir)Dependencies\SDL2_image-2.6.3\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\SDL2-2.28.4\lib\x64;$(SolutionDir)Dependencies\SDL2_image-2.6.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

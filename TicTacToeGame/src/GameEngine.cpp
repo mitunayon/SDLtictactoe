@@ -3,9 +3,10 @@
 #include <cmath>
 
 GameEngine::GameEngine() :
-m_world(new World()),
-m_inputProcessor(new InputProcessor()),
-m_imageRenderer(new ImageRenderer(m_world))
+	m_world(new World()),
+	m_inputProcessor(new InputProcessor()),
+	m_imageRenderer(new ImageRenderer(m_world)),
+	m_quitEngine(false)
 {
 	m_game = nullptr;
 	m_setupController = new GameSetup();
@@ -14,15 +15,14 @@ m_imageRenderer(new ImageRenderer(m_world))
 int GameEngine::Run()
 {
 	//Main loop flag
-	bool quit = false;
 
 	if (!m_setupController->SetupComplete)
 	{
-		quit = true;
+		m_quitEngine = true;
 	}
 
 	//While application is running
-	while (!quit)
+	while (!m_quitEngine)
 	{
 		auto startTime = std::chrono::high_resolution_clock::now();
 
@@ -41,7 +41,7 @@ int GameEngine::Run()
 		m_imageRenderer->Update();
 		m_imageRenderer->PostUpdate();
 
-		quit = m_inputProcessor->IsQuitPressed();
+		m_quitEngine = m_inputProcessor->IsQuitPressed();
 
 		//Cap Framerate
 		auto endTime = std::chrono::high_resolution_clock::now();
@@ -56,6 +56,11 @@ int GameEngine::Run()
 	delete m_world;
 
 	return 0;
+}
+
+void GameEngine::Shutdown()
+{
+	m_quitEngine = true;
 }
 
 

@@ -12,6 +12,7 @@ private:
 	World* m_world;
 	GameSetup* m_setupController;
 	Game* m_game;
+	bool m_quitEngine;
 
 	InputProcessor* const m_inputProcessor;
 	ImageRenderer* const m_imageRenderer;
@@ -23,6 +24,8 @@ public:
 
 	GameEngine();
 	int Run();
+	void Shutdown();
+	bool IsRunning();
 
 	template<typename T>
 	T* InitGame() 
