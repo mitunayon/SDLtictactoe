@@ -63,5 +63,10 @@ void GameEngine::Shutdown()
 	m_quitEngine = true;
 }
 
+bool GameEngine::IsRunning()
+{
+	return false;
+}
+
 
 

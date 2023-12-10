@@ -1,19 +1,19 @@
 #include "pch.h"
-
-// Example Test
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
-}
+#include "../TicTacToeGame/include/GameEngine.h"
+#include "../TicTacToeGame/include/TicTacToeGame.h"
 
 // Walking Skeleton
 TEST(WalkingSkeleton, SmokeTest)
 {
-	bool engineStarts = false;
+	bool gameRan = false;
 
-	// Start the game engine
+	//Start the engine and load a game
+	GameEngine engine = GameEngine();
+	TicTacToeGame* loadedGame = engine.InitGame<TicTacToeGame>();
+	engine.Run();
+	gameRan = engine.IsRunning();
+	engine.Shutdown();
 
-	// Load a game
-
-	EXPECT_TRUE(engineStarts);
+	EXPECT_TRUE(gameRan);
 }
+
